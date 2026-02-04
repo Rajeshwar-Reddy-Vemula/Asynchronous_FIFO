@@ -69,8 +69,8 @@ module async_fifo #(parameter DSIZE = 8, ASIZE = 7) (
       whalf_full <= 0;
       wthree_quarters_full <= 0;
     end else begin
-      whalf_full           <= (w_occupancy >= ((1 << ASIZE) >> 1)); // >= half
-      wthree_quarters_full <= (w_occupancy >= ((1 << ASIZE) - ((1 << ASIZE) >> 2))); // >= 3/4
+      whalf_full           <= (w_occupancy >= ((1 << ASIZE) >> 1)); // >= half       //check if it works!!!!!!        
+      wthree_quarters_full <= (w_occupancy >= ((1 << ASIZE) - ((1 << ASIZE) >> 2))); // >= 3/4         //check if it works !!!!
     end
   end
   // ------------------------------------------------------
