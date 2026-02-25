@@ -47,3 +47,17 @@ property p_underflow
 @(posedge rclk) disable iff (!rst_n)                                  // FIFO never underflows — can't read when empty  
   empty |-> !read;
 endproperty
+
+
+// Fill to full
+@(posedge wclk) cover property (disable iff (!rst_n) $rose(full));
+
+// Drain to empty
+@(posedge rclk) cover property (disable iff (!rst_n) $rose(empty));
+
+// Simultaneous read and write
+@(posedge wclk) cover property (disable iff (!rst_n) write && read);
+
+// Write up to full then read back to empty
+@(posedge wclk) cover property (disable iff (!rst_n) 
+  full ##[1:$] empty);
